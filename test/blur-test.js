@@ -14,13 +14,17 @@ tape("blur() returns a default blur generator", function(test) {
 
 tape("blur() blurs in 1D", function(test) {
   var h = arrays.blur();
-  test.deepEqual(h.radius(1).iterations(1).width(0)([0, 1, 2, 3, 10, 2, 12, 25]), { 0: 0.5, 1: 1, 2: 2, 3: 5, 4: 5, 5: 8, 6: 13, 7: 18.5, width: 8, height: 1 });
+  test.deepEqual(h.radius(1).iterations(1).width(0)([0, 3, 3, 6, 9, 0, 12, 24]), { 0: 1, 1: 2, 2: 4, 3: 6, 4: 5, 5: 7, 6: 12, 7: 20, width: 8, height: 1 });
   test.end();
 });
 
 tape("blur() blurs in 2D", function(test) {
   var h = arrays.blur();
-  test.deepEqual(h.width(4)([0, 1, 2, 3, 8, 10, 12, 27]), { 0: 7.875, 1: 7.875, 2: 7.875, 3: 7.875, 4: 7.875, 5: 7.875, 6: 7.875, 7: 7.875, width: 4, height: 2 });
+  const i = 1331;
+  test.deepEqual(h.width(4)([
+     i, i, i, i,
+    -i,-i,-i,-i
+  ]), { 0: 1, 1: 1, 2: 1, 3: 1, 4: -1, 5: -1, 6: -1, 7: -1, width: 4, height: 2 });
   test.end();
 });
 

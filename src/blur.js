@@ -2,24 +2,18 @@ function blurTransfer(V, r, n, vertical) {
   const [source, target] = V,
     m = Math.floor(source.length / n),
     w = (r << 1) + 1,
+    w1 = 1 / w,
     ki = vertical ? m : 1,
     kj = vertical ? 1 : n,
     W = w * ki,
     R = r * ki;
   for (let j = 0; j < m; ++j) {
-    for (let i = 0, sr = 0, q = 0; i < n + r; ++i) {
+    const k0 = kj * j,
+      kn = k0 + ki * (n - 1);
+    for (let i = 0, sr = w * source[k0]; i < n + r; ++i) {
       const k = ki * i + kj * j;
-      if (i < n) {
-        sr += source[k];
-        q++;
-      }
-      if (i >= r) {
-        if (i >= w) {
-          sr -= source[k - W];
-          q--;
-        }
-        target[k - R] = sr / q;
-      }
+      sr += source[Math.min(k, kn)] - source[Math.max(k - W, k0)];
+      target[Math.max(k - R, k0)] = sr * w1;
     }
   }
   V.reverse();
