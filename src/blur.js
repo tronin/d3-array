@@ -47,7 +47,7 @@ function blurTransfer(V, r, n, vertical) {
 }
 
 export default function blur() {
-  var rx = 7,
+  let rx = 7,
     ry = rx,
     value,
     width;

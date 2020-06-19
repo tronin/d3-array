@@ -1,5 +1,5 @@
-export var floor = Math.floor;
+export const floor = Math.floor;
 
-export var max = Math.max;
+export const max = Math.max;
 
-export var min = Math.min;
+export const min = Math.min;
