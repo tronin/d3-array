@@ -540,11 +540,11 @@ d3.zip([1, 2], [3, 4]); // returns [[1, 3], [2, 4]]
 
 <a name="blur" href="#blur">#</a> d3.<b>blur</b>() · [Source](https://github.com/d3/d3-array/blob/master/src/blur.js), [Examples](https://observablehq.com/@d3/d3-blur)
 
-Creates a blur transformer, which can blur (or smooth) an *array* of values by repeated application of a moving average transform.
+Creates a blur transformer, which can blur (or smooth) an *array* of values by three iterations of a moving average transform.
 
 <a name="blur_radius" href="#blur_radius">#</a> *blur*.<b>radius</b>([*radius*])
 
-If *radius* is specified, sets the radius of the transformation: on each iteration, the value of a point is transformed into the mean value of itself and the *radius* points of data surrounding it on the left and on the right (taking into account the edges). If *radius* is not specified, return the current radius (if horizontal and vertical radii have been set separately, returns their average value). Defaults to 7.
+If *radius* is specified, sets the radius of the transformation: on each iteration, the value of a point is transformed into the mean value of itself and the *radius* points of data surrounding it on the left and on the right (taking into account the edges). If *radius* is not specified, return the current radius (if horizontal and vertical radii have been set separately, returns their average value). If *radius* is not an integer value, the blurring is applied partially. Defaults to 5.
 
 <a name="blur_value" href="#blur_value">#</a> *blur*.<b>value</b>([*value*])
 
