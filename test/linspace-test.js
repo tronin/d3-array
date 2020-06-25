@@ -1,7 +1,7 @@
 var tape = require("tape"),
     arrays = require("../");
 
-tape.only("linspace(start, stop)", function(test) {
+tape("linspace(start, stop)", function(test) {
   test.deepEqual(arrays.linspace(0, 49), [
      0,  1,  2,  3,  4,  5,  6,  7,  8,  9,
     10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
@@ -19,5 +19,11 @@ tape("linspace(start, stop, n)", function(test) {
 
 tape("linspace(start, stop, n, false)", function(test) {
   test.deepEqual(arrays.linspace(2, 3, 5, false), [2, 2.2, 2.4, 2.6, 2.8]);
+  test.end();
+});
+
+tape("linspace(start, stop, n) descending", function(test) {
+  test.deepEqual(arrays.linspace(5, 1, 5), [5, 4, 3, 2, 1]);
+  test.deepEqual(arrays.linspace(5, 0, 5, false), [5, 4, 3, 2, 1]);
   test.end();
 });
