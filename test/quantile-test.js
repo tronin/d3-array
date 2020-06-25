@@ -92,6 +92,16 @@ tape("quantile(array, p, f) observes the specified accessor", function(test) {
   test.end();
 });
 
+tape("quantileIndex(array) returns the index", function(test) {
+  test.deepEqual(arrays.quantileIndex([1, 2], 0.2), [0, 1]);
+  test.deepEqual(arrays.quantileIndex([1, 2, 3], 0.2), [0, 1]);
+  test.deepEqual(arrays.quantileIndex([1, 3, 2], 0.2), [0, 2]);
+  test.deepEqual(arrays.quantileIndex([2, 3, 1], 0.2), [2, 0]);
+  test.deepEqual(arrays.quantileIndex([1], 0.2), [0, 0]);
+  test.deepEqual(arrays.quantileIndex([], 0.2), [undefined, undefined]);
+  test.end();
+});
+
 function box(value) {
   return {value: value};
 }

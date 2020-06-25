@@ -111,6 +111,17 @@ tape("median(array, f) uses the global context", function(test) {
   test.end();
 });
 
+tape("medianIndex(array) returns the index", function(test) {
+  test.deepEqual(arrays.medianIndex([1, 2]), [0, 1]);
+  test.deepEqual(arrays.medianIndex([1, 2, 3]), [1, 1]);
+  test.deepEqual(arrays.medianIndex([1, 3, 2]), [2, 2]);
+  test.deepEqual(arrays.medianIndex([2, 3, 1]), [0, 0]);
+  test.deepEqual(arrays.medianIndex([1]), [0, 0]);
+  test.deepEqual(arrays.medianIndex([]), [undefined, undefined]);
+  test.end();
+});
+
+
 function box(value) {
   return {value: value};
 }
