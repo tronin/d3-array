@@ -1,6 +1,8 @@
 const tape = require("tape"),
     arrays = require("../");
 
+require("./inDelta");
+
 tape("blur() returns a default blur generator", function(test) {
   const h = arrays.blur();
   test.equal(h.radius(), 5);
@@ -54,6 +56,15 @@ tape("blur().radius(0.5) does a fraction of blur", function(test) {
     h.radius(0.5)(V),
     Object.assign([91, 357, 616, 357, 91, 130, 510, 880, 510, 130, 91, 357, 616, 357, 91], { width: 5,  height: 3 })
   );
+  test.end();
+});
+
+tape("blur().radius(1.2) does a fraction of blur", function(test) {
+  const h = arrays.blur(), V = [0,0,0,0,0, 0,0,1,0,0, 0,0,0,0,0];
+  const V1 = h.radius(1)(V);
+  const V2 = h.radius(2)(V);
+  for (let i = 0; i < V1.length; i++) V1[i] = 0.8 * V1[i] + 0.2 * V2[i];
+  test.inDelta(Array.from(h.radius(1.2)(V)), Array.from(V1));
   test.end();
 });
 
