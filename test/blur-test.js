@@ -54,7 +54,7 @@ tape("blur().radius(0.5) does a fraction of blur", function(test) {
   const h = arrays.blur().width(5), V = [0,0,0,0,0, 0,0,5184,0,0, 0,0,0,0,0];
   test.deepEqual(
     h.radius(0.5)(V),
-    Object.assign([91, 357, 616, 357, 91, 130, 510, 880, 510, 130, 91, 357, 616, 357, 91], { width: 5,  height: 3 })
+    Object.assign([64, 96, 544, 96, 64, 256, 384, 2176, 384, 256, 64, 96, 544, 96, 64], { width: 5,  height: 3 })
   );
   test.end();
 });
